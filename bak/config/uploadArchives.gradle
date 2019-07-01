@@ -1,0 +1,65 @@
+apply plugin: 'maven'
+
+if (!hasProperty('sonatypePackaging')) {
+    throw new RuntimeException('you must set sonatypePackaging in gradle.properties !!! like [jar,ajar,aar]')
+}
+
+if (!hasProperty('sonatypeGroupId')) {
+    throw new RuntimeException('you must set sonatypeGroupId in gradle.properties !!! like [com.xxx.xxx]')
+}
+
+if (!hasProperty('sonatypeArtifactId')) {
+    throw new RuntimeException('you must set sonatypeArtifactId in gradle.properties !!! like [project-name]')
+}
+
+if (!hasProperty('sonatypeVersion')) {
+    throw new RuntimeException('you must set sonatypeVersion in gradle.properties !!! like [1.0.0]')
+}
+if (sonatypePackaging == 'ajar') {
+    sonatypePackaging='jar'
+}
+if (!hasProperty('sonatypeRepo')) {
+    project.ext.sonatypeRepo = 'http://172.28.26.205:8081'
+    println "no [sonatypeRepo] found in gradle.properties , use default : $sonatypeRepo"
+}
+if (upSnapshot == 'true') {
+    sonatypeRepo += '/artifactory/toon-customization-android-business-snapshot'
+    sonatypeVersion = "${sonatypeVersion}-SNAPSHOT"
+} else {
+    sonatypeRepo += '/artifactory/toon-customization-android-business-release'
+}
+if (!hasProperty('sonatypeUsername')) {
+    project.ext.sonatypeUsername = '600990'
+    println "no [sonatypeUsername] found in gradle.properties , use default : $sonatypeUsername"
+}
+if (!hasProperty('sonatypePassword')) {
+    project.ext.sonatypePassword = 'AP27BPReuvV6LaPxcjxSL6aCCYF'
+    println "no [sonatypePassword] found in gradle.properties , use default : $sonatypePassword"
+}
+
+println '''
+sonatype repository url = ''' + sonatypeRepo + '''
+sonatype groupId = ''' + sonatypeGroupId + '''
+sonatype artifactId = ''' + sonatypeArtifactId + '''
+sonatype version = ''' + sonatypeVersion + '''
+sonatype packaging = ''' + sonatypePackaging + '''
+'''
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            repository(url: sonatypeRepo) {
+                authentication(userName: sonatypeUsername, password: sonatypePassword)
+            }
+            pom.project {
+                name project.name
+                packaging sonatypePackaging
+                description project.name
+                url ''
+                groupId sonatypeGroupId
+                artifactId sonatypeArtifactId
+                version sonatypeVersion
+            }
+        }
+    }
+}

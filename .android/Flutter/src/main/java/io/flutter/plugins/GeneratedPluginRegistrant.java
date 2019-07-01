@@ -1,7 +1,6 @@
 package io.flutter.plugins;
 
 import io.flutter.plugin.common.PluginRegistry;
-import com.rex.flutter_plugin.FlutterPlugin;
 import com.rex.webview_plugin.WebviewPlugin;
 
 /**
@@ -12,7 +11,6 @@ public final class GeneratedPluginRegistrant {
     if (alreadyRegisteredWith(registry)) {
       return;
     }
-    FlutterPlugin.registerWith(registry.registrarFor("com.rex.flutter_plugin.FlutterPlugin"));
     WebviewPlugin.registerWith(registry.registrarFor("com.rex.webview_plugin.WebviewPlugin"));
   }
 
