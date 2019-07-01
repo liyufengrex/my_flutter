@@ -1,0 +1,27 @@
+package io.flutter.plugins;
+
+import io.flutter.plugin.common.PluginRegistry;
+import com.rex.flutter_plugin.FlutterPlugin;
+import com.rex.webview_plugin.WebviewPlugin;
+
+/**
+ * Generated file. Do not edit.
+ */
+public final class GeneratedPluginRegistrant {
+  public static void registerWith(PluginRegistry registry) {
+    if (alreadyRegisteredWith(registry)) {
+      return;
+    }
+    FlutterPlugin.registerWith(registry.registrarFor("com.rex.flutter_plugin.FlutterPlugin"));
+    WebviewPlugin.registerWith(registry.registrarFor("com.rex.webview_plugin.WebviewPlugin"));
+  }
+
+  private static boolean alreadyRegisteredWith(PluginRegistry registry) {
+    final String key = GeneratedPluginRegistrant.class.getCanonicalName();
+    if (registry.hasPlugin(key)) {
+      return true;
+    }
+    registry.registrarFor(key);
+    return false;
+  }
+}
