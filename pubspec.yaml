@@ -32,6 +32,8 @@ dependencies:
   webview_plugin:
     path: ../../flutter_projects/webview_plugin
 
+  http: ^0.12.0+1
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

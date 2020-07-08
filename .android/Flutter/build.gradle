@@ -1,5 +1,5 @@
 // Generated file. Do not edit.
-apply from: "../config/uploadArchives.gradle"
+
 def localProperties = new Properties()
 def localPropertiesFile = new File(buildscript.sourceFile.parentFile.parentFile, 'local.properties')
 if (localPropertiesFile.exists()) {
@@ -31,7 +31,7 @@ android {
 
     defaultConfig {
         minSdkVersion 16
-        targetSdkVersion 26
+        targetSdkVersion 28
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"

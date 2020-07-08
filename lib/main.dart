@@ -5,6 +5,8 @@ import 'package:my_flutter/type_box_widget.dart';
 import 'package:webview_plugin/webview_plugin.dart';
 import 'battery_widget.dart';
 import 'echo_widget.dart';
+import 'testnet/HomePage.dart';
+import 'testnet/login.dart';
 
 void main() => runApp(_widgetForRoute(window.defaultRouteName));
 
@@ -21,11 +23,14 @@ Widget _widgetForRoute(String route) {
     case 'route3':
       return ParentWidget();
     default:
-      return Center(
-        child: Echo(
-          text: "rex",
-        ),
+      return MaterialApp(
+        home: new LoginPath(),
       );
+//      return Center(
+//        child: Echo(
+//          text: "rex",
+//        ),
+//      );
   }
 }
 
